@@ -56,15 +56,25 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getall;
-    }
-
-    public getall():void{
-        this.http.get<any>(this.apiUrlGet).subscribe((r)=> {
-            console.log(r)
+        this.http.get<any>(this.apiUrlGet).subscribe((r) => {
             this.carbon = r
             for (let item of r) {
-                let mesAno = item.month + "/"+ item.year;
+                let mesAno = item.month + "/" + item.year;
+                this.listaConcatenada.push(mesAno);
+            }
+            for (let item of r) {
+                this.listaPegada.push(item.pegada_total);
+            }
+            this.initChart();
+
+        })
+    }
+
+    public getall(): void {
+        this.http.get<any>(this.apiUrlGet).subscribe((r) => {
+            this.carbon = r
+            for (let item of r) {
+                let mesAno = item.month + "/" + item.year;
                 this.listaConcatenada.push(mesAno);
             }
             for (let item of r) {
@@ -77,13 +87,18 @@ export class DashboardComponent implements OnInit {
 
     public onSubmit(): void {
         const data = this.calulaterForm
-        this.http.post<userBalancerModel>(this.apiUrlPost, this.calulaterForm.value)
-            .pipe(
-        ).subscribe(()=>{
-            this.getall();
-        });
-        
-        
+        if (this.calulaterForm.valid) {
+            this.http.post<userBalancerModel>(this.apiUrlPost, this.calulaterForm.value)
+                .pipe(
+            ).subscribe(() => {
+                this.listaConcatenada = [];
+                this.listaPegada = [];
+                this.getall();
+                this.calulaterForm.reset();
+            });
+        }
+
+
 
 
 
