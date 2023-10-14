@@ -1,19 +1,57 @@
 <form [formGroup]="calulaterForm">
 	<div>
 		<div class="card p-fluid">
-			<h5>Vertical</h5>
+			<h5>Fómulário</h5>
 			<div class="field">
-				<label htmlFor="name1">Name</label>
-				<input pInputText id="name1" type="text" />
+				<label htmlFor="quantity_animal">Quantidade de animal ?</label>
+				<input pInputText id="quantity_animal" type="number" formControlName="quantity_animal"/>
 			</div>
 			<div class="field">
-				<label htmlFor="email1">Email</label>
-				<input pInputText id="email1" type="text" />
+				<label htmlFor="energy_per_month">Energia gasta por mês ?</label>
+				<input pInputText id="energy_per_month" type="number" formControlName="energy_per_month"/>
 			</div>
 			<div class="field">
-				<label htmlFor="age1">Age</label>
-				<input pInputText id="age1" type="text" />
+				<label htmlFor="car_distance_in_km">Quantidade em média percorrida com os carros(KM)?</label>
+				<input pInputText id="car_distance_in_km" type="number" formControlName="car_distance_in_km"/>
+			</div>
+			<div class="field">
+				<label htmlFor="composted_material_quantity">Quantidade de material compostado?</label>
+				<input pInputText id="composted_material_quantity" type="number" formControlName="composted_material_quantity"/>
+			</div>
+
+			<div class="field">
+				<label htmlFor="fetilizante_kg">Quantidade de fertilizandte?</label>
+				<input pInputText id="fetilizante_kg" type="number" formControlName="fetilizante_kg"/>
+			</div>
+			<div class="field">
+				<label htmlFor="year">Ano</label>
+				<input pInputText id="year" type="number" formControlName="year"/>
+			</div>
+			<div class="field">
+				<label htmlFor="month">Mês</label>
+				<input pInputText id="month" type="number" formControlName="month"/>
+			</div>
+
+		</div>
+		<div class="card">
+			<h5>Default</h5>
+			<div class="flex flex-wrap gap-2">
+				<button (click)="onSubmit()" pButton pRipple label="Submit"></button>
 			</div>
 		</div>
 	</div>
 </form>
+
+<div class="grid">
+
+
+
+    <div class="col-12 xl:col-6">
+        <div class="card">
+            <h5>Pegada de Carbono Simplificada</h5>
+            <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
+        </div>
+
+
+    </div>
+</div>
